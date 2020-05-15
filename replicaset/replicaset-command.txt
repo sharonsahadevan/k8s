@@ -1,0 +1,47 @@
+Deleting ReplicaSets
+====================
+
+kubectl delete -f rs/go-demo-2.yml \
+    --cascade=false
+
+
+used the --cascade=false argument to prevent Kubernetes from removing all the downstream objects
+
+Re-using the Same Pods
+========================
+
+kubectl create -f rs/go-demo-2.yml \
+    --save-config
+
+Updating the Definition
+=========================
+
+kubectl apply -f rs/go-demo-2-scaled.yml
+
+
+Destroying a Pod
+=====================
+
+POD_NAME=$(kubectl get pods -o name \
+   | tail -1)
+kubectl delete $POD_NAME
+
+
+Removing a label 
+====================
+
+POD_NAME=$(kubectl get pods -o name \
+    | tail -1)
+kubectl label $POD_NAME service-
+kubectl describe $POD_NAME
+
+
+Please note - at the end of the name of the label. It is the syntax that indicates that a label should be removed.
+
+Re-adding the Label
+=======================
+
+kubectl label $POD_NAME service=go-demo-2
+
+kubectl get pods --show-labels
+

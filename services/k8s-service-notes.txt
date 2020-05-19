@@ -8,7 +8,10 @@ LoadBalancer
 =============
 The LoadBalancer type is only useful when combined with cloud provider’s load balancer.
 
-
 ExternalName
 =================
 ExternalName maps a service to an external address (e.g., kubernetes.io).
+
+Delete service
+==============
+kubectl delete svc go-demo-2-svc

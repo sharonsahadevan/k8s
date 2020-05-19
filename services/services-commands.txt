@@ -1,0 +1,12 @@
+create replicatset/service
+===========================
+kubectl create -f svc/go-demo-2-rs.yml
+
+Exposing a resource
+===================
+kubectl expose rs go-demo-2 \
+    --name=go-demo-2-svc \
+    --target-port=28017 \
+    --type=NodePort
+    
+    

@@ -1,0 +1,13 @@
+Rolling Back with Kubernetes 
+============================
+kubectl rollout undo \
+    -f deploy/go-demo-2-api.yml
+
+kubectl describe \
+    -f deploy/go-demo-2-api.yml
+    
+    
+Getting the Rollout History 
+=============================
+kubectl rollout history \
+    -f deploy/go-demo-2-api.yml

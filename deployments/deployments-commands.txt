@@ -21,3 +21,10 @@ kubectl rollout undo \
 
 kubectl rollout history \
     -f deploy/go-demo-2-api.yml
+
+
+Rollout status
+===================
+
+kubectl rollout status \
+    -f deploy/go-demo-2-api.yml

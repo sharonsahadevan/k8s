@@ -28,3 +28,25 @@ Rollout status
 
 kubectl rollout status \
     -f deploy/go-demo-2-api.yml
+    
+    
+Filter deployments
+====================
+
+kubectl get deployments \
+    -l type=db,vendor=MongoLabs
+    
+
+Updating deployments
+======================
+
+kubectl set image deployments \
+    -l type=db,vendor=MongoLabs \
+    db=mongo:3.4 --record
+    
+
+Scaling the deployment
+=======================
+
+kubectl scale deployment \
+    go-demo-2-api --replicas 8 --record

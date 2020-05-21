@@ -11,3 +11,13 @@ Getting the Rollout History
 =============================
 kubectl rollout history \
     -f deploy/go-demo-2-api.yml
+
+
+Rollback to several previoud release
+====================================
+kubectl rollout undo \
+    -f deploy/go-demo-2-api.yml \
+    --to-revision=2
+
+kubectl rollout history \
+    -f deploy/go-demo-2-api.yml

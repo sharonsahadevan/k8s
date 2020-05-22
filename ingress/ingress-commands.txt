@@ -1,0 +1,9 @@
+Port
+=====
+
+PORT=$(kubectl get svc go-demo-2-api \
+    -o jsonpath="{.spec.ports[0].nodePort}")
+
+curl -i "http://$IP:$PORT/demo/hello"
+
+

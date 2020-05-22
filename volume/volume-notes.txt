@@ -1,0 +1,14 @@
+Types of Mounts in hostPath
+===========================
+
+The Directory type will mount a directory from the host. It must exist on the given path. 
+If it doesn’t, we might switch to DirectoryOrCreate type which serves the same purpose. The difference is that DirectoryOrCreate will create the directory if it does not exist on the host.
+
+The File and FileOrCreate are similar to their Directory equivalents. 
+The only difference is that this time we’d mount a file, instead of a directory.
+
+The other supported types are Socket, CharDevice, and BlockDevice. 
+They should be self-explanatory. If you don’t know what character or block devices are, you probably don’t need those types.
+
+Note:
+hostPath is a great solution for accessing host resources like /var/run/docker.sock, /dev/cgroups, and others. That is, as long as the resource we’re trying to reach is on the same node as the Pod.

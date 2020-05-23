@@ -1,0 +1,19 @@
+Creating a configMap
+====================
+
+kubectl create cm my-config \
+    --from-file=cm/prometheus-conf.yml
+
+
+Creating a ConfigMap from Multiple Files
+=========================================
+
+kubectl create cm my-config \
+    --from-file=cm/prometheus-conf.yml \
+    --from-file=cm/prometheus.yml
+
+kubectl create -f cm/alpine.yml
+
+#Run the following command separately
+kubectl exec -it alpine -- \
+    ls /etc/config

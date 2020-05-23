@@ -12,3 +12,5 @@ They should be self-explanatory. If you don’t know what character or block dev
 
 Note:
 hostPath is a great solution for accessing host resources like /var/run/docker.sock, /dev/cgroups, and others. That is, as long as the resource we’re trying to reach is on the same node as the Pod.
+
+Do use hostPath to mount host resources like /var/run/docker.sock and /dev/cgroups. Do not use it to inject configuration files or store the state of an application.

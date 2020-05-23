@@ -14,3 +14,8 @@ Note:
 hostPath is a great solution for accessing host resources like /var/run/docker.sock, /dev/cgroups, and others. That is, as long as the resource we’re trying to reach is on the same node as the Pod.
 
 Do use hostPath to mount host resources like /var/run/docker.sock and /dev/cgroups. Do not use it to inject configuration files or store the state of an application.
+
+The gitRepo Volume type allows a third field which we haven’t used. We could have set a specific revision of the repository. But, for demo purposes, the HEAD should do.
+
+The gitRepo Volume type helps us move git commands (e.g., git clone) into the YAML definition. It also removes the need for the git binary inside containers. While gitRepo might not always be the best option, it is indeed something worth considering.
+

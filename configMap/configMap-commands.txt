@@ -17,3 +17,38 @@ kubectl create -f cm/alpine.yml
 #Run the following command separately
 kubectl exec -it alpine -- \
     ls /etc/config
+
+
+Delete configMap
+=================
+
+kubectl delete -f cm/alpine.yml
+#Run the following command separately to delete the configmap
+kubectl delete cm my-config
+
+Creating a ConfigMap from a Directory 
+=====================================
+
+kubectl create cm my-config \
+    --from-file=cm
+    
+Creating ConfigMap Using Literals
+=================================
+
+kubectl create cm my-config \
+    --from-literal=something=else \
+    --from-literal=weather=sunny
+
+kubectl get cm my-config -o yaml
+
+Note:
+The --from-literal argument is useful when we’re in need to set a relatively small set of configuration entries in different clusters. It makes more sense to specify only the things that change, than all the configuration options.
+
+Creating the ConfigMap
+=======================
+
+kubectl create cm my-config \
+    --from-env-file=cm/my-env-file.yml
+
+kubectl get cm my-config -o yaml
+

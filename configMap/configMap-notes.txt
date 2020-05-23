@@ -1,0 +1,1 @@
+ConfigMap takes a configuration from a source and mounts it into running containers as a volume.

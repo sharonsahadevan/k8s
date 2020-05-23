@@ -19,3 +19,5 @@ The gitRepo Volume type allows a third field which we haven’t used. We could h
 
 The gitRepo Volume type helps us move git commands (e.g., git clone) into the YAML definition. It also removes the need for the git binary inside containers. While gitRepo might not always be the best option, it is indeed something worth considering.
 
+An emptyDir Volume is created when a Pod is assigned to a node. It will exist for as long as the Pod continues running on that server.
+

@@ -1,0 +1,78 @@
+Getting existing Namespaces
+============================
+
+kubectl get ns
+
+The Kube-public Namespace
+==========================
+
+kubectl --namespace kube-public get all
+
+Note:
+The primary reason for kube-public's existence is to provide space where we can create objects that should be visible throughout the whole cluster.
+
+The kube-system Namespace
+=========================
+
+Note:
+The Kube-system Namespace is critical.Almost all the objects and resources Kubernetes needs are running inside kube-system Namespace.
+
+kubectl --namespace kube-system get all
+
+
+Create Namespace
+=================
+
+kubectl create ns testing
+
+We can continue using the --namespace argument to operate within the newly created Namespace. However, writing --namespace with every command is tedious. Instead, we’ll create a new context.
+
+kubectl config set-context testing \
+    --namespace testing \
+    --cluster minikube \
+    --user minikube
+    
+ We created a new context called testing. It is the same as the minikube context, except that it uses the testing Namespace.
+ 
+ kubectl config view
+ 
+ The output, limited to the relevant parts, is as follows.
+ 
+ ...
+contexts:
+- context:
+    cluster: minikube
+    user: minikube
+  name: minikube
+- context:
+    cluster: minikube
+    namespace: testing
+    user: minikube
+  name: testing
+...
+
+
+Context switching
+=====================
+
+kubectl config use-context testing
+
+Altering deployment definition
+==============================
+
+TAG=2.0
+
+DOM=go-demo-2.com
+
+cat ns/go-demo-2.yml \
+    | sed -e \
+    "s@image: $IMG@image: $IMG:$TAG@g" \
+    | sed -e \
+    "s@host: $DOM@host: $TAG\.$DOM@g" \
+    | kubectl create -f -
+    
+    
+ Note:
+The primary objective behind the existence of the DNSes with the Namespace name is when we want to reach services running in a different Namespace.
+
+

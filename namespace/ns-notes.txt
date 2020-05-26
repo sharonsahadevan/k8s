@@ -76,3 +76,14 @@ cat ns/go-demo-2.yml \
 The primary objective behind the existence of the DNSes with the Namespace name is when we want to reach services running in a different Namespace.
 
 
+Deleting a Namespace and All Its Objects
+========================================
+cascaded deletion:
+Another handy feature of the Namespaces is their cascading effect. If, for example, we delete the testing Namespace, all the objects and the resources running inside it will be removed as well.
+
+kubectl delete ns testing
+
+
+
+
+

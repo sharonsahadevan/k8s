@@ -1,0 +1,13 @@
+Rules
+A Rule is a set of operations (verbs), resources, and API groups. Verbs describe activities that can be performed on resources which belong to different API Groups.
+
+
+Roles
+A Role is a collection of Rules. It defines one or more Rules that can be bound to a user or a group of users.
+
+Subjects
+Subjects define entities that are executing operations. A Subject can be a User, a Group, or a Service Account.
+
+Rolebindings
+As the name suggests, RoleBindings bind Subjects to Roles.
+Since Subjects define users, RoleBindings effectively bind users (or Groups or Service Accounts) to Roles, thus giving them permissions to perform certain operations on specific objects within a Namespace. Just like roles, RoleBindings have a cluster-wide alternative called ClusterRoleBindings. The only difference is that their scope is not limited to a Namespace, but applied to a whole cluster.

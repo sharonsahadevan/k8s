@@ -1,0 +1,39 @@
+Install openssl
+
+create a User and a directory to store the keys
+
+mkdir keys
+openssl genrsa -out keys/jdoe.key 2048
+
+use the private key to generate the certificate
+
+openssl req -new \
+    -key keys/jdoe.key \
+    -out keys/jdoe.csr \
+    -subj "/CN=jdoe/O=devs"
+    
+ Creating Final Certificate 
+ 
+ For the final certificate, we’ll need the cluster’s certificate authority (CA). It will be responsible for approving the request and for generating the necessary certificate John will use to access the cluster.
+
+Since we used Minikube, the authority is already produced for us as part of the cluster creation. It should be in the .minikube directory inside the OS user’s home folder.
+
+openssl x509 -req \
+    -in keys/jdoe.csr \
+    -CA ~/.minikube/ca.crt \
+    -CAkey ~/.minikube/ca.key \
+    -CAcreateserial \
+    -out keys/jdoe.crt \
+    -days 365
+    
+    John does not need the jdoe.csr file. We used it only to generate the final certificate jdoe.crt. He will need all the other files though.
+    
+    
+Getting the server address
+
+SERVER=$(kubectl config view \
+    -o jsonpath='{.clusters[?(@.name=="minikube")].cluster.server}')
+
+echo $SERVER
+
+

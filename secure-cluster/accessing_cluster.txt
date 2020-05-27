@@ -1,0 +1,26 @@
+Configuring kubectl
+
+kubectl config set-cluster jdoe \
+    --certificate-authority \
+    keys/ca.crt \
+    --server $SERVER
+    
+We created a new cluster called jdoe.
+
+Please note that the command we executed created just another config entry that enables to access all resources that currently exist in the cluster. It manipulated local text file, without changing anything in the existing cluster.
+
+Setting credentials
+
+kubectl config set-credentials jdoe \
+    --client-certificate keys/jdoe.crt \
+    --client-key keys/jdoe.key
+    
+ 
+ Creating a new context
+ 
+ kubectl config set-context jdoe \
+    --cluster jdoe \
+    --user jdoe
+
+kubectl config use-context jdoe
+

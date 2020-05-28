@@ -1,0 +1,52 @@
+Switching context
+=================
+kubectl config use-context minikube
+kubectl get all
+
+ use a kubectl command that will allow us to check whether we could perform an action if we would be a specific user.
+ 
+ kubectl auth can-i get pods --as jdoe
+ 
+ 
+ List roles/clusterroles
+ ========================
+ 
+ kubectl get roles
+ kubectl get clusterroles
+ 
+ This time we got quite a few resources. Our cluster already has some Cluster Roles defined by default. Those prefixed with system: are Cluster Roles reserved for Kubernetes system use. Modifications to those roles can result in non-functional clusters, so we should not update them. Instead, we’ll skip system Roles and focus on those that should be assigned to users.
+
+The output, limited to Cluster Roles that are meant to be bound to users, is as follows (you can get the same result through 
+kubectl get clusterroles | grep -v system
+ 
+ Looking into view
+ ======================
+ The Cluster Role with the least permissions is view. Let’s take a closer look at it.
+ 
+ kubectl describe clusterrole view
+ 
+ 
+ Looking into Edit
+ =====================
+ Let’s explore another pre-defined Cluster Role
+ 
+ kubectl describe clusterrole edit
+ 
+ Looking into admin
+ ===================
+ 
+ kubectl describe clusterrole admin
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

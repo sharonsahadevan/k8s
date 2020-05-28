@@ -26,6 +26,17 @@ kubectl get clusterroles | grep -v system
  kubectl describe clusterrole view
  
  
+ The main difference between edit and admin is that the latter allows us to manipulate Roles and RoleBindings. While edit permits us to do almost any operation related to Kubernetes objects like Pods and Deployments, admin goes a bit further and provides an additional capability that allows us to define permissions for other users by modifying existing or creating new Roles and Role Bindings.
+ 
+ 
+ cluster admin
+ ==============
+The major restriction of the admin role is that it cannot alter the Namespace itself, nor it can update Resource Quotas (we haven’t explored them yet).
+ 
+ kubectl describe clusterrole \
+    cluster-admin
+    
+ 
  Looking into Edit
  =====================
  Let’s explore another pre-defined Cluster Role
@@ -37,6 +48,11 @@ kubectl get clusterroles | grep -v system
  
  kubectl describe clusterrole admin
  
+The Cluster Role cluster-admin holds nothing back. An asterisk (*) means everything. It provides god-like powers. A user bound to this role can do anything, without any restrictions. The cluster-admin role is the one bound to the minikube user. We can confirm that easily by executing
+
+kubectl auth can-i "*" "*"
+
+
  
  
  

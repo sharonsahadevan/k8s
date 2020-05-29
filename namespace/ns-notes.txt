@@ -84,6 +84,11 @@ Another handy feature of the Namespaces is their cascading effect. If, for examp
 kubectl delete ns testing
 
 
+Communicating between Namespaces
+===================================
 
+go-demo-2-api Service created a DNS based on that name. Actually, the full DNS entry is go-demo-2-api.svc.cluster.local. Both resolve to the same service go-demo-2-api which, in this case, runs in the default Namespace.
+
+The third DNS entry we got is in the format <service-name>.<namespace-name>.svc.cluster.local. In our case, that is go-demo-2-api.default.svc.cluster.local. Or, if we prefer a shorter version, we could use go-demo-2-api.default.
 
 

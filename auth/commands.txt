@@ -53,10 +53,16 @@ The Cluster Role cluster-admin holds nothing back. An asterisk (*) means everyth
 kubectl auth can-i "*" "*"
 
 
+ Describe Cluster Role Binding
+ ==============================
+ kubectl describe clusterrolebinding \
+    view
  
  
- 
- 
+ validate another user's permission
+ ==================================
+ kubectl auth can-i get pods \
+    --as jdoe --all-namespaces
  
  
  

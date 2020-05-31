@@ -8,6 +8,17 @@ kubectl get all
  kubectl auth can-i get pods --as jdoe
  
  
+ Switching to context with another user
+ ======================================
+ 
+ kubectl config set-context jdoe \
+    --cluster jdoe \
+    --user jdoe \
+    --namespace jdoe
+
+kubectl config use-context jdoe
+ 
+ 
  List roles/clusterroles
  ========================
  

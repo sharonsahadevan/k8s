@@ -1,0 +1,24 @@
+Guaranteed QoS
+================
+
+Guaranteed QoS is assigned only to Pods which have set both CPU requests and limits, and memory requests and limits for all of their containers. The Pods we created with the last definition match that criteria.
+
+However, there’s one more necessary condition that must be met. The requests and limits values must be the same per container. There is one more catch. When a container specifies only limits, requests are automatically set to the same values. In other words, containers without requests will have Guaranteed QoS if their limits are defined.
+
+We can summarize criteria for Guaranteed QoS as follows.
+
+Both memory and CPU limits must be set.
+Memory and CPU requests must be set to the same values as the limits, or they can be left empty, in which case they default to the limits (we’ll explore them soon).
+
+Burstable QoS
+===============
+Burstable QoS is assigned to Pods that do not meet the criteria for Guaranteed QoS but have at least one container with memory or CPU requests defined.
+
+Pods with the Burstable QoS are guaranteed minimal (requested) memory usage. They might be able to use more resources if they are available. If the system is under pressure and needs more available memory, containers belonging to the Pods with the Burstable QoS are more likely to be killed than those with Guaranteed QoS when there are no Pods with the BestEffort QoS. You can consider the Pods with this QoS as medium priority.
+
+BestEffort QoS 
+===============
+
+BestEffort QoS is given to the Pods that do not qualify as Guaranteed or Burstable. They are Pods that consist of containers that have none of the resources defined. Containers in Pods qualified as BestEffort can use any available memory they need.
+
+When in need of more resources, Kubernetes will start killing containers residing in the Pods with BestEffort QoS. They are the lowest priority, and they are the first to disappear when more memory is needed.

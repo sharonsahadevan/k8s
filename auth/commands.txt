@@ -82,7 +82,13 @@ kubectl --namespace dev auth can-i \
     delete deployments --as jdoe
  
  
- 
+ Creating the Pods Directly
+ ===========================
+ kubectl --namespace test run test \
+    --image alpine \
+    --requests memory=100Mi \
+    --restart Never \
+    sleep 10000
  
  
  

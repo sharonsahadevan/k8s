@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: Ingress-path-based
+spec:
+  tls:
+    - hosts:
+      - medbridge-dev.digitalxlabs.com
+      secretName: medbridge-dev-secret
+  rules:
+    - host: medbridge-dev.digitalxlabs.com
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: core-dev-service
+            servicePort: 80
+        - path: /config
+          backend:
+            serviceName: configurator-dev-service
+            servicePort: 80

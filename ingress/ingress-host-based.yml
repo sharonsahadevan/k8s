@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-host-based
+spec:
+  tls:
+    - secretName: core-dev-cert
+    - secretName: configurator-dev-cert
+  rules:
+    - host: core-dev.digitalxlabs.com
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: core-dev-service
+            servicePort: 80
+      
+    - host: configurator-dev.digitalxlabs.com
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: configurator-dev-service
+            servicePort: 80

@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: multihost-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.com/health-checks: "true"
+spec:
+  tls:
+    - secretName: firstdomain-secret
+    - secretName: seconddomain-secret
+  rules:
+    - host: foo.bar.com
+      http:
+        paths:
+          - backend:
+              serviceName: core-dev-service
+              servicePort: 80
+    - host: fruit.bar.com
+      http:
+        paths:
+          - backend:
+              serviceName: configurator-dev-service
+              servicePort: 80

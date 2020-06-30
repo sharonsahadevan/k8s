@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: core-dev-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.com/health-checks: "true"
+spec:
+  tls:
+    - hosts:
+        - foor-bar.com
+      secretName: domain-secret
+  backend:
+    serviceName: core-dev
+    servicePort: 80
